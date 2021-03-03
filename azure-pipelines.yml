@@ -37,7 +37,7 @@ stages:
       inputs:
         pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
         artifactName: 'drop'
-- stage: Deploy to Dev
+- stage: Dev
   jobs:
   - job: DeployToDevJob
     steps:
