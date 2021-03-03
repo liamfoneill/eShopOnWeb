@@ -52,6 +52,6 @@ stages:
         azureSubscription: 'Sandbox(f1802194-fb29-4974-a84d-132574cb73a0)'
         appType: 'webApp'
         appName: 'eshoponweb-development'
-        package: '$(System.ArtifactsDirectory)/**/*.zip'
+        package: '$(System.ArtifactsDirectory)/**/web.zip'
         deploymentMethod: 'auto'
     
