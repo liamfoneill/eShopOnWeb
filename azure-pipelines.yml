@@ -24,16 +24,19 @@ stages:
         command: build
         projects: '**/*.csproj'
     - task: DotNetCoreCLI@2
+      displayName: Test
       inputs:
         command: test
         projects: '**/*Tests/*.csproj'
     - task: DotNetCoreCLI@2
+      displayName: Publish
       inputs:
         command: publish
         publishWebProjects: True
         arguments: '--output $(Build.ArtifactStagingDirectory)'
         zipAfterPublish: True
     - task: PublishBuildArtifacts@1
+      displayName: Publish Build Artifacts
       inputs:
         pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
         artifactName: 'drop'
@@ -42,12 +45,14 @@ stages:
   - job: Dev
     steps:
     - task: DownloadBuildArtifacts@0
+      displayName: Download Build Artifacts
       inputs:
         buildType: 'current'
         downloadType: 'single'
         artifactName: 'drop'
         downloadPath: '$(System.ArtifactsDirectory)'
     - task: AzureWebApp@1
+      displayName: Deploy to Dev Web App
       inputs:
         azureSubscription: 'Sandbox(f1802194-fb29-4974-a84d-132574cb73a0)'
         appType: 'webApp'
