@@ -11,7 +11,7 @@ variables:
 stages:
 - stage: Build
   jobs:
-  - job: BuildJob
+  - job: Build
     steps:    
     - task: DotNetCoreCLI@2
       displayName: Restore
@@ -39,7 +39,7 @@ stages:
         artifactName: 'drop'
 - stage: Dev
   jobs:
-  - job: DeployToDevJob
+  - job: Dev
     steps:
     - task: AzureRmWebAppDeployment@4
       inputs:
@@ -47,5 +47,5 @@ stages:
         azureSubscription: 'Sandbox(f1802194-fb29-4974-a84d-132574cb73a0)'
         appType: 'webApp'
         WebAppName: 'eshoponweb-development'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+        packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     
